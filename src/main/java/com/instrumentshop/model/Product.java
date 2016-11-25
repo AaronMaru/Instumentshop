@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "products")
@@ -22,12 +25,15 @@ public class Product {
     private int unitinstock;
     private String productmanufacturer;
     
+	@Transient
+    private MultipartFile productimage;
+    
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productname=" + productname + ", productcategory="
 				+ productcategory + ", productdescription=" + productdescription + ", productprice=" + productprice
 				+ ", productcondition=" + productcondition + ", productstatus=" + productstatus + ", unitinstock="
-				+ unitinstock + ", productmanufacturer=" + productmanufacturer + "]";
+				+ unitinstock + ", productmanufacturer=" + productmanufacturer + ", productImage=" + productimage + "]";
 	}
 	
 	public int getProductId() {
@@ -75,12 +81,22 @@ public class Product {
 	public int getUnitinstock() {
 		return unitinstock;
 	}
+	public MultipartFile getProductimage() {
+		return productimage;
+	}
+
+	public void setProductimage(MultipartFile productimage) {
+		this.productimage = productimage;
+	}
+
 	public void setUnitinstock(int unitinstock) {
 		this.unitinstock = unitinstock;
 	}
 	public String getProductmanufacturer() {
 		return productmanufacturer;
 	}
+	
+
 	public void setProductmanufacturer(String productmanufacturer) {
 		this.productmanufacturer = productmanufacturer;
 	}
