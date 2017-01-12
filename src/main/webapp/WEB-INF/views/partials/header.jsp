@@ -10,7 +10,6 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="../../favicon.ico">
 		<title>Music Online Shop</title>
 		<!-- Bootstrap core CSS -->
 		<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
@@ -52,10 +51,10 @@
 									<c:choose>
 							           
 							        	<c:when test="${ pageContext.request.userPrincipal.name != null }">
-							           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${ pageContext.request.userPrincipal.name } <span class="caret"></span></a>
+							           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome: ${ pageContext.request.userPrincipal.name } <span class="caret"></span></a>
 							           		<ul class="dropdown-menu">
 												<li><a href="<c:url value="/admin"/>">Admin Page</a></li>
-												<li><a href="#">Another action</a></li>
+												<li><a href="<c:url value="/customer/cart"/>">Cart</a></li>
 												<li><a href="#">Something else here</a></li>
 												<li role="separator" class="divider"></li>
 												<li class="dropdown-header">Nav header</li>
@@ -64,7 +63,8 @@
 											</ul>	
 							           	</c:when> 
 							           	<c:otherwise>
-							           		<a href="${ pageContext.request.contextPath }/login" role="button">Login</a>
+							           		<li><a href="${ pageContext.request.contextPath }/login" role="button">Login</a></li>
+							           		<li><a href="${ pageContext.request.contextPath }/register" role="button">Register</a></li>
 										</c:otherwise>   
 							        </c:choose>		
 									

@@ -9,69 +9,69 @@
             <p class="lead">Fill the below information to add a product:</p>
         </div>
 
-        <form:form action="${ pageContext.request.contextPath }/admin/product/add" method="post" enctype="multipart/form-data" commandName="product" >
+        <form:form action="${ pageContext.request.contextPath }/admin/product/create" method="post" enctype="multipart/form-data" commandName="product" >
         	
         	<div class="form-group">
-        		<label for="name">Name</label>
-        		<form:input path="productname" id="name" class="form-control"/>
+        		<label for="name">Name </label><form:errors path="productName" cssStyle="color: #ff0000" />
+        		<form:input path="productName" id="productName" class="form-control"/>
         	</div>
         	        	
         	<div class="form-group">
         		<label for="category">Category</label>
         		<label class="checkbox-inline">
-        			<form:radiobutton path="productcategory" id="category" value="instrument"/>Instrument
+        			<form:radiobutton path="productCategory" id="category" value="instrument"/>Instrument
         		</label>
         		<label class="checkbox-inline">
-        			<form:radiobutton path="productcategory" id="category" value="record"/>Record
+        			<form:radiobutton path="productCategory" id="category" value="record"/>Record
         		</label>
         		<label class="checkbox-inline">
-        			<form:radiobutton path="productcategory" id="category" value="accessory"/>Accessory
+        			<form:radiobutton path="productCategory" id="category" value="accessory"/>Accessory
         		</label>
         	</div>
         	
         	<div class="form-group">
         		<label for="decription">Description</label>
-        		<form:textarea path="productdescription" id="description" class="form-control"/>
+        		<form:textarea path="productDescription" id="description" class="form-control"/>
         	</div>
         	
         	<div class="form-group">
-        		<label for="price">Price</label>
-        		<form:input path="productprice" id="price" class="form-control"/>
+        		<label for="price">Price </label><form:errors path="productPrice" cssStyle="color: #ff0000"></form:errors>
+        		<form:input path="productPrice" id="productPrice" class="form-control"/>
         	</div> 
         	
         	<div class="form-group">
         		<label for="condition">Condition</label>
         		<label class="checkbox-inline">
-        			<form:radiobutton path="productcondition" id="condition" value="new"/>New
+        			<form:radiobutton path="productCondition" id="productCondition" value="new"/>New
         		</label>
         		<label class="checkbox-inline">
-        			<form:radiobutton path="productcondition" id="condition" value="used"/>Used
+        			<form:radiobutton path="productCondition" id="productCondition" value="used"/>Used
         		</label>
         	</div>
         	
         	<div class="form-group">
         		<label for="category">Status</label>
         		<label class="checkbox-inline">
-        			<form:radiobutton path="productstatus" id="status" value="active"/>Active
+        			<form:radiobutton path="productStatus" id="productStatus" value="active"/>Active
         		</label>
         		<label class="checkbox-inline">
-        			<form:radiobutton path="productstatus" id="status" value="inactive"/>Inactive
+        			<form:radiobutton path="productStatus" id="productStatus" value="inactive"/>Inactive
         		</label>
         	</div>
         	
         	<div class="form-group">
-        		<label for="unitInStock">Unit in Stock</label>
+        		<label for="unitInStock">Unit in Stock </label><form:errors path="unitinstock" cssStyle="color: #ff0000"></form:errors>
         		<form:input path="unitinstock" id="unitInStock" class="form-control"/>
         	</div> 
         	
         	<div class="form-group">
         		<label for="manufacturer">Manufacturer</label>
-        		<form:input path="productmanufacturer" id="manufacturer" class="form-control"/>
+        		<form:input path="productManufacturer" id="productManufacturer" class="form-control"/>
         	</div> 
         	
         	<div class="form-group">
                 <label class="control-label" for="productImage">Upload Picture</label>
-                <form:input type="file" path="productimage"  id="productImage" class="form:input-large" />
+                <form:input type="file" path="productImage"  id="productImage" class="form:input-large" />
             </div>
             
         	<br>

@@ -19,15 +19,15 @@
                 <tbody>
                     <c:forEach items="${ products }" var="product">
                         <tr>
-                            <td><img src="<c:url value="/resources/images/${ product.productname }.png"/>" alt="image" style="width:100%; height: 130px"/></td>
-                            <td>${ product.productname }</td>
-                            <td>${ product.productcategory }</td>
-                            <td>${ product.productcondition }</td>
-                            <td>${ product.productprice }</td>
+                            <td><img src="<c:url value="/resources/images/${ product.productId}.png"/>" alt="image" style="width:100%; height: 130px"/></td>
+                            <td>${ product.productName }</td>
+                            <td>${ product.productCategory }</td>
+                            <td>${ product.productCondition }</td>
+                            <td>${ product.productPrice }</td>
                             <td>
                             	<a href="<c:url value="/admin/product/${ product.productId }" />"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="<c:url value="/admin/product/edit/${ product.productId }" />"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="<c:url value="/admin/product/delete/${ product.productId }" />"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a href="<c:url value="/admin/product/${ product.productId }/edit" />"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="<c:url value="/admin/product/${ product.productId }/delete" />"><span class="glyphicon glyphicon-remove"></span></a>
                             </td>
                             
                         </tr>
@@ -35,7 +35,7 @@
                 </tbody>
             </table>
             
-            <a href="<c:url value="/admin/product/add"/>" class="btn btn-primary">Add Product</a>
+            <a href="<c:url value="/admin/product/create"/>" class="btn btn-primary">Add Product</a>
 	</div>          
  </div>
             <!-- FOOTER -->

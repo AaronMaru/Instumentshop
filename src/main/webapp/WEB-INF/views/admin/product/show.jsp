@@ -12,15 +12,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="<c:url value="/resources/images/${ product.productname }.png"/>" alt="image" style="width:100%"/>
+                    <img src="<c:url value="/resources/images/${ product.productId }.png"/>" alt="image" style="width:100%"/>
                 </div>
                 <div class="col-md-5">
-                    <h3>${product.productname}</h3>
-                    <p>${product.productdescription}</p>
-                    <p><strong>Manufacturer</strong>: ${product.productmanufacturer}</p>
-                    <p><strong>Category</strong>: ${product.productcategory}</p>
-                    <p><strong>Condition</strong>: ${product.productcondition}</p>
-                    <p>${product.productprice} USD</p>
+                    <h3>${product.productName}</h3>
+                    <p>${product.productDescription}</p>
+                    <p><strong>Manufacturer</strong>: ${product.productManufacturer}</p>
+                    <p><strong>Category</strong>: ${product.productCategory}</p>
+                    <p><strong>Condition</strong>: ${product.productCondition}</p>
+                    <p>${product.productPrice} USD</p>
 
                     <br/>
 

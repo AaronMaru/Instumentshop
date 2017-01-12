@@ -1,103 +1,161 @@
 package com.instrumentshop.model;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product implements Serializable{	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2315528365510423509L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int productId;
-    private String productname;
-    private String productcategory;
-    private String productdescription;
-    private double productprice;
-    private String productcondition;
-    private String productstatus;
+	
+	@NotEmpty(message = "The product name must not be null.")
+    private String productName;
+	
+    private String productCategory;
+    private String productDescription;
+    
+    @Min(value = 0, message = "The product price must no be less than zero.")
+    private double productPrice;
+    private String productCondition;
+    private String productStatus;
+    
+    @Min(value = 0, message = "The product unit nust not ve less than zero.")
     private int unitinstock;
-    private String productmanufacturer;
+    private String productManufacturer;
     
 	@Transient
-    private MultipartFile productimage;
+    private MultipartFile productImage;
     
-	@Override
-	public String toString() {
-		return "Product [productId=" + productId + ", productname=" + productname + ", productcategory="
-				+ productcategory + ", productdescription=" + productdescription + ", productprice=" + productprice
-				+ ", productcondition=" + productcondition + ", productstatus=" + productstatus + ", unitinstock="
-				+ unitinstock + ", productmanufacturer=" + productmanufacturer + ", productImage=" + productimage + "]";
-	}
-	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<CartItem> cartItemList;
+
 	public int getProductId() {
 		return productId;
 	}
+
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public String getProductname() {
-		return productname;
-	}
-	public void setProductname(String productname) {
-		this.productname = productname;
-	}
-	public String getProductcategory() {
-		return productcategory;
-	}
-	public void setProductcategory(String productcategory) {
-		this.productcategory = productcategory;
-	}
-	public String getProductdescription() {
-		return productdescription;
-	}
-	public void setProductdescription(String productdescription) {
-		this.productdescription = productdescription;
-	}
-	public double getProductprice() {
-		return productprice;
-	}
-	public void setProductprice(double productprice) {
-		this.productprice = productprice;
-	}
-	public String getProductcondition() {
-		return productcondition;
-	}
-	public void setProductcondition(String productcondition) {
-		this.productcondition = productcondition;
-	}
-	public String getProductstatus() {
-		return productstatus;
-	}
-	public void setProductstatus(String productstatus) {
-		this.productstatus = productstatus;
-	}
-	public int getUnitinstock() {
-		return unitinstock;
-	}
-	public MultipartFile getProductimage() {
-		return productimage;
+
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setProductimage(MultipartFile productimage) {
-		this.productimage = productimage;
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+	public double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductCondition() {
+		return productCondition;
+	}
+
+	public void setProductCondition(String productCondition) {
+		this.productCondition = productCondition;
+	}
+
+	public String getProductStatus() {
+		return productStatus;
+	}
+
+	public void setProductStatus(String productStatus) {
+		this.productStatus = productStatus;
+	}
+
+	public int getUnitinstock() {
+		return unitinstock;
 	}
 
 	public void setUnitinstock(int unitinstock) {
 		this.unitinstock = unitinstock;
 	}
-	public String getProductmanufacturer() {
-		return productmanufacturer;
-	}
-	
 
-	public void setProductmanufacturer(String productmanufacturer) {
-		this.productmanufacturer = productmanufacturer;
+	public String getProductManufacturer() {
+		return productManufacturer;
 	}
+
+	public void setProductManufacturer(String productManufacturer) {
+		this.productManufacturer = productManufacturer;
+	}
+
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
+
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
+	}
+
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productCategory="
+				+ productCategory + ", productDescription=" + productDescription + ", productPrice=" + productPrice
+				+ ", productCondition=" + productCondition + ", productStatus=" + productStatus + ", unitinstock="
+				+ unitinstock + ", productManufacturer=" + productManufacturer + ", productImage=" + productImage
+				+ ", cartItemList=" + cartItemList + "]";
+	}
+
+	
+	
+	
 }

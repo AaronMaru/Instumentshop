@@ -20,10 +20,6 @@ public class ProductDaoImpl implements ProductDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public void setSesstionFactory(SessionFactory sessionFactory){
-		this.sessionFactory = sessionFactory;
-	}
-	
 	@SuppressWarnings("unchecked")
 	public List<Product> getProductList() {
 		

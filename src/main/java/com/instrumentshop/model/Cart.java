@@ -1,38 +1,70 @@
 package com.instrumentshop.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+import java.util.List;
 
-public class Cart {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-	private String cartId;
-	private Map<String, CartItem> cartItem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "carts")
+public class Cart implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8501568928429557984L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cart_seq_Id")
+	@SequenceGenerator(name="cart_seq_Id", sequenceName="cart_seq_Id", allocationSize = 1, initialValue = 1)
+	@Column
+	private int cartId;
+	
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<CartItem> cartItem;
+	
+	@OneToOne
+	@JoinColumn(name = "customerId")
+	@JsonIgnore
+	private Customer customer;
+	
 	private double grandTotal;
-	
-	private Cart(){
-		cartItem = new HashMap<String, CartItem>();
-		grandTotal = 0;
-	}
-	
-	public Cart(String cartId){
-		this();
-		this.cartId = cartId;
-	}
 
-	public String getCartId() {
+	public int getCartId() {
 		return cartId;
 	}
 
-	public void setCartId(String cartId) {
+	public void setCartId(int cartId) {
 		this.cartId = cartId;
 	}
 
-	public Map<String, CartItem> getCartItem() {
+	public List<CartItem> getCartItem() {
 		return cartItem;
 	}
 
-	public void setCartItem(Map<String, CartItem> cartItem) {
+	public void setCartItem(List<CartItem> cartItem) {
 		this.cartItem = cartItem;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public double getGrandTotal() {
@@ -42,34 +74,13 @@ public class Cart {
 	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
 	}
-	
-	public void addCartItem(CartItem item){
-		
-		String productId = Integer.toString(item.getProduct().getProductId());
-		
-		if(cartItem.containsKey(productId)){
-			CartItem existingCartItem = cartItem.get(productId);
-			existingCartItem.setQuantity(existingCartItem.getQuantity() + item.getQuantity());
-			cartItem.put(productId, existingCartItem);
-		}else{
-			cartItem.put(productId, item);
-		}
-		
-		updateGrandTotal();
+
+	@Override
+	public String toString() {
+		return "Cart [cartId=" + cartId + ", cartItem=" + cartItem + ", customer=" + customer + ", grandTotal="
+				+ grandTotal + "]";
 	}
+
 	
-	public void removeCartItem(CartItem item){
-		
-		String productId = Integer.toString(item.getProduct().getProductId());
-		cartItem.remove(productId);
-		
-		updateGrandTotal();
-	}
-	
-	public void updateGrandTotal(){
-		grandTotal = 0;
-		for(CartItem item : cartItem.values()){
-			grandTotal = grandTotal + item.getTotalPrice();
-		}
-	}
+
 }
