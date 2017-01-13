@@ -10,18 +10,23 @@
             <h3>Basic Info</h3>
             <div class="form-group">
                 <label for="name">Name </label>
+                <form:errors path="customerName" cssStyle="color:#ff0000"/>
                 <form:input path="customerName" id="customerName" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="name">UserName </label>
+                <span style="color: #ff0000">${usernameMsg}</span>
+                <form:errors path="username" cssStyle="color:#ff0000"/>
                 <form:input path="username" id="username" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="name">Password </label>
+                <label for="name">Password </label><form:errors path="password" cssStyle="color:#ff0000"/>
                 <form:input path="password" id="password" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="name">Email </label>
+                <span style="color: #ff0000">${emailMsg}</span>
+                <form:errors path="customerEmail" cssStyle="color:#ff0000"/>
                 <form:input path="customerEmail" id="customerEmail" class="form-control" />
             </div>
             <div class="form-group">

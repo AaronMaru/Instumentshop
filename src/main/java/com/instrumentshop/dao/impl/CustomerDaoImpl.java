@@ -61,9 +61,10 @@ public class CustomerDaoImpl implements CustomerDao{
 		return (Customer) session.get(Customer.class, customerId);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings("unchecked")
 	public List<Customer> getAllCustomer() {
 		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery("from Customer");
 		List<Customer> customers = query.list();
 		return customers;

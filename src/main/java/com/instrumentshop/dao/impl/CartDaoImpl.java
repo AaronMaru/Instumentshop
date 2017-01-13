@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.instrumentshop.dao.CartDao;
 import com.instrumentshop.model.Cart;
+import com.instrumentshop.service.CustomerOrderService;
 
 @Repository
 @Transactional
@@ -17,6 +18,9 @@ public class CartDaoImpl implements CartDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private CustomerOrderService customerOrderService;
 	
 	public Cart getCartById(int cartId) {
 		
@@ -40,8 +44,11 @@ public class CartDaoImpl implements CartDao{
 	public void update(Cart cart) {
 
 		int cartId = cart.getCartId();
+		double grandTotal = customerOrderService.getCustomerGrandTotal(cartId);
+		cart.setGrandTotal(grandTotal);
 		
-		//do later
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(cart);
 	}
 
 	

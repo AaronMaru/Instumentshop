@@ -46,21 +46,23 @@
 
 		                    </ul>
 							<ul class="nav navbar-nav pull-right">
-								<li class="dropdown">
+								
 									<%-- ${ pageContext.request.userPrincipal.name != null ? 'a' : 'b' } --%>
 									<c:choose>
 							           
 							        	<c:when test="${ pageContext.request.userPrincipal.name != null }">
-							           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome: ${ pageContext.request.userPrincipal.name } <span class="caret"></span></a>
-							           		<ul class="dropdown-menu">
-												<li><a href="<c:url value="/admin"/>">Admin Page</a></li>
-												<li><a href="<c:url value="/customer/cart"/>">Cart</a></li>
-												<li><a href="#">Something else here</a></li>
-												<li role="separator" class="divider"></li>
-												<li class="dropdown-header">Nav header</li>
-												<li><a href="#">Separated link</a></li>
-												<li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
-											</ul>	
+							        		<li class="dropdown">
+								           		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome: ${ pageContext.request.userPrincipal.name } <span class="caret"></span></a>
+								           		<ul class="dropdown-menu">
+													<li><a href="<c:url value="/admin"/>">Admin Page</a></li>
+													<li><a href="<c:url value="/customer/cart"/>">Cart</a></li>
+													<li><a href="#">Something else here</a></li>
+													<li role="separator" class="divider"></li>
+													<li class="dropdown-header">Nav header</li>
+													<li><a href="#">Separated link</a></li>
+													<li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
+												</ul>	
+											</li>
 							           	</c:when> 
 							           	<c:otherwise>
 							           		<li><a href="${ pageContext.request.contextPath }/login" role="button">Login</a></li>
@@ -70,7 +72,7 @@
 									
 									
 									
-								</li>
+								
 							</ul>
 		                </div>
 		            </div>

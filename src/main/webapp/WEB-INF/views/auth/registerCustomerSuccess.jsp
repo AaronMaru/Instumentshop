@@ -10,7 +10,7 @@
 			</div>
 		</section>
 		<section class="container">
-			<p>			
+			<p>
 				<a href="<spring:url value="/product" />" class="btn btn-default">Products</a>
 			</p>
 		</section>

@@ -26,21 +26,21 @@ public class Cart implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -8501568928429557984L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cart_seq_Id")
 	@SequenceGenerator(name="cart_seq_Id", sequenceName="cart_seq_Id", allocationSize = 1, initialValue = 1)
 	@Column
 	private int cartId;
-	
+
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CartItem> cartItem;
-	
+
 	@OneToOne
 	@JoinColumn(name = "customerId")
 	@JsonIgnore
 	private Customer customer;
-	
+
 	private double grandTotal;
 
 	public int getCartId() {

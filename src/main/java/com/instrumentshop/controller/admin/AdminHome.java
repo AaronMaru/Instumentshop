@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.instrumentshop.model.Customer;
 import com.instrumentshop.model.Product;
+import com.instrumentshop.service.CustomerService;
 import com.instrumentshop.service.ProductService;
 
 @Controller
@@ -17,8 +19,12 @@ public class AdminHome {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private CustomerService customerService;
+	
 	@RequestMapping("")
 	public String adminPage(){
+		
 		return "admin/index";
 	}
 	
@@ -26,11 +32,15 @@ public class AdminHome {
 	public String productList(Model model){
 		List<Product> products = productService.getProductList();
 		model.addAttribute("products", products);
+		
 		return "admin/product/index";
 	}
 	
 	@RequestMapping("/customer")
-	public String customerList(){
-		return "";
+	public String customerList(Model model){
+		List<Customer> customers = customerService.getAllCustomer();
+		model.addAttribute("customers",customers);
+		
+		return "customer/index";
 	}
 }
